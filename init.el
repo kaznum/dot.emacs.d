@@ -15,6 +15,7 @@
   (package-initialize))
 
 ;; SVN mode
+(add-to-list 'load-path "~/.emacs.d/from_git/psvn")
 (require 'psvn)
 (autoload 'svn-status "psvn" nil t)
 (setq svn-status-hide-unmodified t)
