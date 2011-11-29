@@ -28,3 +28,9 @@
 [submodule "from_git/psvn"]
 	path = from_git/psvn
 	url = https://github.com/emacsmirror/psvn.git
+[submodule "from_git/rspec-mode"]
+	path = from_git/rspec-mode
+	url = git://github.com/pezra/rspec-mode.git
+[submodule "from_git/mode-compile"]
+	path = from_git/mode-compile
+	url = https://github.com/emacsmirror/mode-compile.git

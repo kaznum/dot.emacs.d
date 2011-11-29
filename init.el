@@ -1,5 +1,6 @@
 (setq load-path (cons "~/.emacs.d" load-path))
 (add-to-list 'load-path "~/.emacs.d/auto-install")
+(add-to-list 'load-path "~/.emacs.d/misc")
 (require 'auto-install)
 (setq auto-install-directory "~/.emacs.d/auto-install/")
 ;;(auto-install-update-emacswiki-package-name t)
@@ -43,6 +44,11 @@
 ;; rinari
 ;;; required inf-ruby
 (require 'rinari)
+
+;; rspec-mode
+(add-to-list 'load-path "~/.emacs.d/from_git/mode-compile") ;; dependency
+(add-to-list 'load-path "~/.emacs.d/from_git/rspec-mode")
+(require 'rspec-mode)
 
 ;; configuration of rhtml-mode
 (add-to-list 'load-path "~/.emacs.d/from_git/rhtml")
