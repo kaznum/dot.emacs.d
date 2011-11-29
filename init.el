@@ -1,6 +1,5 @@
 (setq load-path (cons "~/.emacs.d" load-path))
 (add-to-list 'load-path "~/.emacs.d/auto-install")
-(add-to-list 'load-path "~/.emacs.d/ruby")
 (require 'auto-install)
 (setq auto-install-directory "~/.emacs.d/auto-install/")
 ;;(auto-install-update-emacswiki-package-name t)
