@@ -1,0 +1,27 @@
+[submodule "from_git/magit"]
+	path = from_git/magit
+	url = https://github.com/magit/magit.git
+[submodule "from_git/anything-config"]
+	path = from_git/anything-config
+	url = git://repo.or.cz/anything-config.git
+[submodule "from_git/auto-complete"]
+	path = from_git/auto-complete
+	url = https://github.com/m2ym/auto-complete.git
+[submodule "from_git/coffee-mode"]
+	path = from_git/coffee-mode
+	url = https://github.com/defunkt/coffee-mode.git
+[submodule "from_git/cucumber.el"]
+	path = from_git/cucumber.el
+	url = git://github.com/michaelklishin/cucumber.el.git
+[submodule "from_git/rhtml"]
+	path = from_git/rhtml
+	url = https://github.com/eschulte/rhtml.git
+[submodule "from_git/rsense"]
+	path = from_git/rsense
+	url = https://github.com/m2ym/rsense.git
+[submodule "from_git/yasnippet"]
+	path = from_git/yasnippet
+	url = https://github.com/capitaomorte/yasnippet.git
+[submodule "from_git/yasnippets-rails"]
+	path = from_git/yasnippets-rails
+	url = https://github.com/eschulte/yasnippets-rails.git
