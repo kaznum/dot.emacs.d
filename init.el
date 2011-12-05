@@ -111,25 +111,7 @@
                   'append)
 (add-to-list 'default-frame-alist '(font . "fontset-menlokakugo"))
 
-;; Configure for SKK
-;(defvar system-load-path load-path)
-;(setq my-load-path '("/Applications/Emacs.app/Contents/Resources/site-lisp/skk"
-;		     "/Applications/Emacs.app/Contents/Resources/site-lisp/apel"
-;		     "/Applications/Emacs.app/Contents/Resources/site-lisp/emu"))
-;(setq load-path (append my-load-path system-load-path))
-;(require 'skk-autoloads)
-;(global-set-key "\C-x\C-j" 'skk-mode)
-;(setq skk-large-jisyo "/Users/kaz/Library/Application Support/AquaSKK/SKK-JISYO.L")
-;(add-hook 'isearch-mode-hook
-;	  (function (lambda ()
-;		      (and (boundp 'skk-mode) skk-mode
-;			   (skk-isearch-mode-setup)))))
-;(add-hook 'isearch-mode-end-hook
-;	  (function
-;	   (lambda ()
-;	     (and (boundp 'skk-mode) skk-mode (skk-isearch-mode-cleanup))
-;	     (and (boundp 'skk-mode-invoked) skk-mode-invoked
-;		  (skk-set-cursor-properly)))))
+;; yasnippet
 (setq yas/trigger-key 'TAB)
 
 ;; ruby-mode
