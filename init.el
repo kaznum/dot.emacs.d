@@ -191,5 +191,28 @@ and source-file directory for your debugger.")
 
 ;; anything
 (add-to-list 'load-path "~/.emacs.d/from_git/anything-config")
-(require 'anything-config)
+(add-to-list 'load-path "~/.emacs.d/from_git/anything-config/contrib")
+(require 'anything-startup)
+;(global-set-key "\^x\^f" 'anything-filelist+)
+
+;; anything.el
+(custom-set-variables
+  ;; custom-set-variables was added by Custom.
+  ;; If you edit it by hand, you could mess it up, so be careful.
+  ;; Your init file should contain only one such instance.
+  ;; If there is more than one, they won't work right.
+ '(anything-command-map-prefix-key "\C-c\C-f"))
+
+; show trailing whitespace
+(when (boundp 'show-trailing-whitespace)
+  (setq-default show-trailing-whitespace t))
+
+; make _ not to be a separator of a word
+(modify-syntax-entry ?_ "w")
+
+; haskell mode
+(load "~/.emacs.d/from_git/haskell-mode/haskell-site-file")
+(add-hook 'haskell-mode-hook 'font-lock-mode)
+(custom-set-variables
+ '(haskell-mode-hook '(turn-on-haskell-indentation)))
 

@@ -34,3 +34,6 @@
 [submodule "from_git/mode-compile"]
 	path = from_git/mode-compile
 	url = https://github.com/emacsmirror/mode-compile.git
+[submodule "from_git/haskell-mode"]
+	path = from_git/haskell-mode
+	url = https://github.com/haskell/haskell-mode.git
