@@ -5,9 +5,9 @@
 (add-to-list 'load-path (expand-file-name "~/.emacs.d/misc/elib-1.0"))
 (require 'jde)
 ;; ecb does not support emacs24 yet???
-;(add-to-list 'load-path (expand-file-name "~/.emacs.d/misc/ecb-2.40"))
-;(load-file "~/.emacs.d/misc/ecb-2.40/ecb.el")
-;(require 'ecb)
+;; (add-to-list 'load-path (expand-file-name "~/.emacs.d/misc/ecb-2.40"))
+;;(load-file "~/.emacs.d/misc/ecb-2.40/ecb.el")
+;;(require 'ecb)
 ;; android development in JDEE
 (custom-set-variables
  '(jde-global-classpath (quote (
@@ -57,11 +57,11 @@
 (require 'yaml-mode)
 (add-to-list 'auto-mode-alist '("\\.yml$" . yaml-mode))
 (add-hook 'yaml-mode-hook
-          '(lambda ()
-             (setq comment-start "#")
-             (setq comment-start-skip "\\(^\\s-*\\|\\=\\s-*\\)#+ *")
-             (setq comment-end-skip "$")
-             (set (make-local-variable 'comment-style) 'indent) ))
+	  '(lambda ()
+	     (setq comment-start "#")
+	     (setq comment-start-skip "\\(^\\s-*\\|\\=\\s-*\\)#+ *")
+	     (setq comment-end-skip "$")
+	     (set (make-local-variable 'comment-style) 'indent) ))
 
 ;; rinari
 ;;; required inf-ruby
@@ -76,7 +76,7 @@
 (add-to-list 'load-path "~/.emacs.d/from_git/rhtml")
 (require 'rhtml-mode)
 (add-hook 'rhtml-mode-hook
-	(lambda () (rinari-launch)))
+          (lambda () (rinari-launch)))
 
 ;; configuration of yasnippet/rails-snippets
 (add-to-list 'load-path
@@ -118,8 +118,7 @@
           '(lambda ()
              (setq tab-width 2)
              (setq indent-tabs-mode nil)
-             (setq ruby-indent-level tab-width)
-             ))
+             (setq ruby-indent-level tab-width)))
 
 ;; make scratch buffer empty
 (setq initial-scratch-message nil)
@@ -175,7 +174,7 @@ and source-file directory for your debugger.")
 (require 'auto-complete-config)
 (ac-config-default)
 
-;;rsense
+;; rsense
 (setq rsense-home (expand-file-name "~/.emacs.d/from_git/rsense/"))
 ;;(setq rsense-rurema-home "~/opt/rurema")
 (add-to-list 'load-path (concat rsense-home "/etc"))
@@ -193,7 +192,6 @@ and source-file directory for your debugger.")
             (add-to-list 'ac-sources 'ac-source-rsense-method)
             (add-to-list 'ac-sources 'ac-source-rsense-constant)))
 
-
 ;; Coffee-mode
 (add-to-list 'load-path "~/.emacs.d/from_git/coffee-mode")
 (require 'coffee-mode)
@@ -203,8 +201,8 @@ and source-file directory for your debugger.")
   (set (make-local-variable 'tab-width) 2))
 (add-hook 'coffee-mode-hook '(lambda() (coffee-custom)))
 
-;;SASS
-;;(add-to-list 'load-path "~/.emacs.d/from_git/scss-mode")
+;; SASS
+;; (add-to-list 'load-path "~/.emacs.d/from_git/scss-mode")
 (require 'sass-mode)
 
 ;; Cucumber-mode
@@ -215,34 +213,36 @@ and source-file directory for your debugger.")
 (add-to-list 'load-path "~/.emacs.d/from_git/anything-config")
 (add-to-list 'load-path "~/.emacs.d/from_git/anything-config/contrib")
 (require 'anything-startup)
-;(global-set-key "\^x\^f" 'anything-filelist+)
+;; (global-set-key "\^x\^f" 'anything-filelist+)
 
 ;; anything.el
 (custom-set-variables
-  ;; custom-set-variables was added by Custom.
-  ;; If you edit it by hand, you could mess it up, so be careful.
-  ;; Your init file should contain only one such instance.
-  ;; If there is more than one, they won't work right.
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
  '(anything-command-map-prefix-key "\C-c\C-f"))
 
-; show trailing whitespace
+;; show trailing whitespace
 (when (boundp 'show-trailing-whitespace)
   (setq-default show-trailing-whitespace t))
 
-; make _ not to be a separator of a word
+;; make _ not to be a separator of a word
 (modify-syntax-entry ?_ "w")
 
-; haskell mode
+;; haskell mode
 (load "~/.emacs.d/from_git/haskell-mode/haskell-site-file")
 (add-hook 'haskell-mode-hook 'font-lock-mode)
 (custom-set-variables
  '(haskell-mode-hook '(turn-on-haskell-indentation)))
 
 
-; js mode(js.el)
+;; js mode(js.el)
 (add-hook 'js-mode-hook
-	  '(lambda()
+          '(lambda()
              (setq js-indent-level 2)
-             (setq indent-tabs-mode nil)
-	     ))
+             (setq indent-tabs-mode nil)))
 
+(add-hook 'emacs-lisp-mode-hook
+          '(lambda()
+             (setq indent-tabs-mode nil)))
