@@ -1,3 +1,22 @@
+;;jde
+(add-to-list 'load-path (expand-file-name "~/.emacs.d/misc/jdee-2.4.0.1/lisp"))
+(add-to-list 'load-path (expand-file-name "~/.emacs.d/misc/cedet-1.1/common"))
+(load-file (expand-file-name "~/.emacs.d/misc/cedet-1.1/common/cedet.el"))
+(add-to-list 'load-path (expand-file-name "~/.emacs.d/misc/elib-1.0"))
+(require 'jde)
+;; ecb does not support emacs24 yet???
+;(add-to-list 'load-path (expand-file-name "~/.emacs.d/misc/ecb-2.40"))
+;(load-file "~/.emacs.d/misc/ecb-2.40/ecb.el")
+;(require 'ecb)
+;; android development in JDEE
+(custom-set-variables
+ '(jde-global-classpath (quote (
+                                "/System/Library/Frameworks/JavaVM.framework/Classes/classes.jar"
+                                "~/andriod-sdks/platforms/android-8/android.jar"
+                                "~/android-sdks/platforms/android-16/android.jar"
+                                ))))
+
+;; initial loading
 (setq load-path (cons "~/.emacs.d" load-path))
 (add-to-list 'load-path "~/.emacs.d/auto-install")
 (add-to-list 'load-path "~/.emacs.d/misc")
@@ -14,6 +33,9 @@
     (load
      (expand-file-name "~/.emacs.d/elpa/package.el"))
   (package-initialize))
+
+;; Disable toolbar
+(tool-bar-mode 0)
 
 ;; SVN mode
 (add-to-list 'load-path "~/.emacs.d/from_git/psvn")
@@ -215,4 +237,12 @@ and source-file directory for your debugger.")
 (add-hook 'haskell-mode-hook 'font-lock-mode)
 (custom-set-variables
  '(haskell-mode-hook '(turn-on-haskell-indentation)))
+
+
+; js mode(js.el)
+(add-hook 'js-mode-hook
+	  '(lambda()
+             (setq js-indent-level 2)
+             (setq indent-tabs-mode nil)
+	     ))
 
