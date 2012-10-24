@@ -29,10 +29,14 @@
 ;;; interfacing with ELPA, the package archive.
 ;;; Move this code earlier if you want to reference
 ;;; packages in your .emacs.
-(when
+;;(when
     (load
      (expand-file-name "~/.emacs.d/elpa/package.el"))
-  (package-initialize))
+(add-to-list 'package-archives 
+    '("marmalade" .
+      "http://marmalade-repo.org/packages/"))
+  (package-initialize)
+;;)
 
 ;; Disable toolbar
 (tool-bar-mode 0)
