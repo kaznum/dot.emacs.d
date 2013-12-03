@@ -10,11 +10,11 @@
 ;;(require 'ecb)
 ;; android development in JDEE
 (custom-set-variables
- '(jde-global-classpath (quote (
-                                "/System/Library/Frameworks/JavaVM.framework/Classes/classes.jar"
-                                "~/andriod-sdks/platforms/android-8/android.jar"
-                                "~/android-sdks/platforms/android-16/android.jar"
-                                ))))
+ '(ansi-color-names-vector ["#242424" "#e5786d" "#95e454" "#cae682" "#8ac6f2" "#333366" "#ccaa8f" "#f6f3e8"])
+; '(anything-command-map-prefix-key "")
+ '(custom-enabled-themes (quote (deeper-blue)))
+ '(haskell-mode-hook (quote (turn-on-haskell-indentation)) t)
+ '(jde-global-classpath (quote ("/System/Library/Frameworks/JavaVM.framework/Classes/classes.jar" "~/andriod-sdks/platforms/android-8/android.jar" "~/android-sdks/platforms/android-16/android.jar"))))
 
 ;; initial loading
 (setq load-path (cons "~/.emacs.d" load-path))
@@ -30,13 +30,13 @@
 ;;; Move this code earlier if you want to reference
 ;;; packages in your .emacs.
 ;;(when
-    (load
-     (expand-file-name "~/.emacs.d/elpa/package.el"))
-(add-to-list 'package-archives 
-    '("marmalade" .
-      "http://marmalade-repo.org/packages/"))
-  (package-initialize)
-;;)
+(load
+ (expand-file-name "~/.emacs.d/elpa/package.el"))
+(when (require 'package nil t)
+;  (add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/"))
+  (add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/"))
+  (add-to-list 'package-archives '("ELPA" . "http://tromey.com/elpa/"))
+  (package-initialize))
 
 ;; Disable toolbar
 (tool-bar-mode 0)
@@ -213,19 +213,13 @@ and source-file directory for your debugger.")
 (add-to-list 'load-path "~/.emacs.d/from_git/cucumber.el")
 (require 'feature-mode)
 
-;; anything
-(add-to-list 'load-path "~/.emacs.d/from_git/anything-config")
-(add-to-list 'load-path "~/.emacs.d/from_git/anything-config/contrib")
-(require 'anything-startup)
-;; (global-set-key "\^x\^f" 'anything-filelist+)
 
-;; anything.el
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(anything-command-map-prefix-key "\C-c\C-f"))
+;; helm
+;;(require 'helm-config)
+;;(helm-descbinds-mode)
+;;(require 'helm-migemo)
+;;(setq helm-use-migemo t)
+
 
 ;; show trailing whitespace
 (when (boundp 'show-trailing-whitespace)
@@ -237,8 +231,7 @@ and source-file directory for your debugger.")
 ;; haskell mode
 (load "~/.emacs.d/from_git/haskell-mode/haskell-site-file")
 (add-hook 'haskell-mode-hook 'font-lock-mode)
-(custom-set-variables
- '(haskell-mode-hook '(turn-on-haskell-indentation)))
+(setq haskell-program-name "ghci")
 
 
 ;; js mode(js.el)
@@ -250,3 +243,83 @@ and source-file directory for your debugger.")
 (add-hook 'emacs-lisp-mode-hook
           '(lambda()
              (setq indent-tabs-mode nil)))
+
+;; slime
+(add-to-list 'load-path (expand-file-name "~/.emacs.d/misc/slime-2013-03-13"))
+(when (require 'slime nil t)
+  (setq inferior-lisp-program "clisp -K full")
+  (setq slime-protocol-version 'ignore)
+
+  (defun mit-scheme-start-swank (file encoding)
+    (format "%S\n\n" `(start-swank ,file)))
+
+  (defun mit-scheme-find-buffer-package ()
+    (save-excursion
+      (let ((case-fold-search t))
+        (goto-char (point-min))
+        (and (re-search-forward "^;+ package: \\(([^)]+)\\)" nil t)
+             (match-string-no-properties 1)))))
+
+  (defun mit-scheme-slime-mode-init ()
+    (slime-mode t)
+    (make-local-variable 'slime-find-buffer-package-function)
+    (setq slime-find-buffer-package-function 'mit-scheme-find-buffer-package))
+
+  (slime-setup)
+  (if (not (memq 'mit-scheme slime-lisp-implementations))
+      (setq slime-lisp-implementations
+            '((clisp ("clisp") :init slime-init-command)
+              (mit-scheme ("mit-scheme") :init mit-scheme-start-swank))))
+  ;;(setq slime-default-lisp 'mit-scheme)
+  (setq slime-default-lisp 'clisp)
+  (add-hook 'scheme-mode-hook 'mit-scheme-slime-mode-init))
+
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
+
+
+(add-hook 'haml-mode-hook
+  (lambda()
+    (setq indent-tabs-mode nil)))
+
+
+(require 'web-mode)
+(add-to-list 'auto-mode-alist '("\\.phtml$"     . web-mode))
+(add-to-list 'auto-mode-alist '("\\.tpl\\.php$" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.jsp$"       . web-mode))
+(add-to-list 'auto-mode-alist '("\\.as[cp]x$"   . web-mode))
+(add-to-list 'auto-mode-alist '("\\.erb$"       . web-mode))
+(add-to-list 'auto-mode-alist '("\\.html?$"     . web-mode))
+(defun web-mode-hook ()
+  "Hooks for Web mode."
+  (setq web-mode-html-offset   2)
+  (setq web-mode-css-offset    2)
+  (setq web-mode-script-offset 2)
+  (setq web-mode-php-offset    2)
+  (setq web-mode-java-offset   2)
+  (setq web-mode-asp-offset    2)
+  (setq indent-tabs-mode nil))
+(add-hook 'web-mode-hook 'web-mode-hook)
+
+;; helm
+;;; helm
+(require 'helm-config)
+(helm-descbinds-mode)
+;(helm-mode 1)
+
+(let ((key-and-func
+       `((,(kbd "C-r")   helm-for-files)
+         (,(kbd "C-^")   helm-c-apropos)
+         (,(kbd "C-;")   helm-resume)
+         (,(kbd "M-s")   helm-occur)
+         (,(kbd "M-x")   helm-M-x)
+         (,(kbd "M-y")   helm-show-kill-ring)
+         (,(kbd "M-z")   helm-do-grep)
+         (,(kbd "C-S-h") helm-descbinds)
+        )))
+  (loop for (key func) in key-and-func
+        do (global-set-key key func)))
