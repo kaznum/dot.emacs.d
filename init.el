@@ -8,16 +8,16 @@
 (add-to-list 'load-path (expand-file-name "~/.emacs.d/misc/elib-1.0"))
 
 ;;;;;; el-get settings
-(add-to-list 'load-path "~/.emacs.d/el-get/el-get")
+(when load-file-name
+  (setq user-emacs-directory (file-name-directory load-file-name)))
 
-(unless (require 'el-get nil 'noerror)
-  (with-current-buffer
-      (url-retrieve-synchronously
-       "https://raw.githubusercontent.com/dimitri/el-get/master/el-get-install.el")
-    (goto-char (point-max))
-    (eval-print-last-sexp)))
+;; el-get
+(add-to-list 'load-path (locate-user-emacs-file "el-get"))
+(require 'el-get)
+;; el-getでダウンロードしたパッケージは ~/.emacs.d/under-el-get に入るようにする
+(setq el-get-dir (locate-user-emacs-file "under-el-get"))
 
-(add-to-list 'el-get-recipe-path "~/.emacs.d/el-get-user/recipes")
+;; el-getでダウンロードしたパッケージは ~/.emacs.d/ に入る
 ;;;;;; end of el-get settings
 
 ;;jde
