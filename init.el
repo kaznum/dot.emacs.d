@@ -201,8 +201,7 @@ and source-file directory for your debugger.")
             (add-to-list 'ac-sources 'ac-source-rsense-constant)))
 
 ;; Coffee-mode
-(add-to-list 'load-path "~/.emacs.d/from_git/coffee-mode")
-(require 'coffee-mode)
+(el-get-bundle coffee-mode)
 (add-to-list 'auto-mode-alist '("\\.coffee$" . coffee-mode))
 (defun coffee-custom ()
   "coffee-mode-hook"
@@ -210,8 +209,7 @@ and source-file directory for your debugger.")
 (add-hook 'coffee-mode-hook '(lambda() (coffee-custom)))
 
 ;; SASS
-;; (add-to-list 'load-path "~/.emacs.d/from_git/scss-mode")
-(require 'sass-mode)
+(el-get-bundle sass-mode)
 
 ;; Cucumber-mode
 (add-to-list 'load-path "~/.emacs.d/from_git/cucumber.el")
@@ -332,6 +330,5 @@ and source-file directory for your debugger.")
   (loop for (key func) in key-and-func
         do (global-set-key key func)))
 
-
 ;; slim-mode
-(require 'slim-mode)
+(el-get-bundle slim-mode)
