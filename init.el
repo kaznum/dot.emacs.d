@@ -30,9 +30,9 @@
 
 ;; Git mode
 ;; Magit
-(add-to-list 'load-path "~/.emacs.d/from_git/magit")
-(require 'magit)
-(require 'magit-svn)
+(el-get-bundle magit)
+(el-get-bundle magit-gh-pulls)
+(el-get-bundle magit-svn)
 
 ;; YAML mode
 (el-get-bundle yaml-mode)
