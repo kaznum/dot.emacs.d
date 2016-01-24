@@ -16,7 +16,6 @@
 ;;;;;; end of el-get settings
 
 ;; initial loading
-(setq load-path (cons "~/.emacs.d" load-path))
 (add-to-list 'load-path "~/.emacs.d/misc")
 
 ;; Disable toolbar
@@ -93,6 +92,16 @@
 
 ;; do not autosave
 (setq auto-save-default nil)
+
+
+(el-get-bundle findr)
+
+(el-get-bundle ruby-mode)
+(el-get-bundle inf-ruby)
+(el-get-bundle ruby-electric)
+(el-get-bundle jump)
+(el-get-bundle rvm)
+(el-get-bundle inflections)
 
 (add-hook 'ruby-mode-hook
           '(lambda ()
@@ -284,6 +293,8 @@ and source-file directory for your debugger.")
 (el-get-bundle helm-descbinds)
 (el-get-bundle helm-gtags)
 (el-get-bundle helm-rails)
+(el-get-bundle wgrep)
+(el-get-bundle wgrep-helm)
 
 (let ((key-and-func
       `((,(kbd "C-r")   helm-for-files)
@@ -297,3 +308,31 @@ and source-file directory for your debugger.")
        )))
  (loop for (key func) in key-and-func
        do (global-set-key key func)))
+
+(el-get-bundle cl-lib-highlight)
+
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(safe-local-variable-values
+   (quote
+    ((eval ignore-errors "Write-contents-functions is a buffer-local alternative to before-save-hook"
+           (add-hook
+            (quote write-contents-functions)
+            (lambda nil
+              (delete-trailing-whitespace)
+              nil))
+           (require
+            (quote whitespace))
+           "Sometimes the mode needs to be toggled off and on."
+           (whitespace-mode 0)
+           (whitespace-mode 1))
+     (whitespace-line-column . 80)
+     (whitespace-style face tabs trailing lines-tail)
+     (ruby-compilation-executable . "ruby")
+     (ruby-compilation-executable . "ruby1.8")
+     (ruby-compilation-executable . "ruby1.9")
+     (ruby-compilation-executable . "rbx")
+     (ruby-compilation-executable . "jruby")))))
