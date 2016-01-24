@@ -78,14 +78,11 @@
 (el-get-bundle rinari)
 
 ;; rspec-mode
-;;(add-to-list 'load-path "~/.emacs.d/from_git/mode-compile") ;; dependency
-;;(add-to-list 'load-path "~/.emacs.d/from_git/rspec-mode")
-;;(require 'rspec-mode)
+(el-get-bundle mode-compile)
 (el-get-bundle rspec-mode)
 
 ;; configuration of rhtml-mode
-(add-to-list 'load-path "~/.emacs.d/from_git/rhtml")
-(require 'rhtml-mode)
+(el-get-bundle rhtml-mode)
 (add-hook 'rhtml-mode-hook
           (lambda () (rinari-launch)))
 
