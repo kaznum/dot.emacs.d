@@ -7,11 +7,12 @@
 (load-file (expand-file-name "~/.emacs.d/misc/cedet-1.1/common/cedet.el"))
 (add-to-list 'load-path (expand-file-name "~/.emacs.d/misc/elib-1.0"))
 
-;; el-get
+;;;;;; el-get settings
 (add-to-list 'load-path (locate-user-emacs-file "el-get"))
 (require 'el-get)
 ;; el-getでダウンロードしたパッケージは ~/.emacs.d/ に入るようにする
 (setq el-get-dir (locate-user-emacs-file ""))
+;;;;;; end of el-get settings
 
 ;;jde
 (require 'jde)
