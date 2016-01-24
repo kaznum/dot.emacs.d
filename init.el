@@ -178,6 +178,7 @@ and source-file directory for your debugger.")
 ;; ruby-block
 ;; highlight the line corresponding to "end"
 ;; downloaded from http://www.emacswiki.org/emacs/download/ruby-block.el
+(el-get-bundle ruby-block)
 (require 'ruby-block)
 (ruby-block-mode t)
 (setq ruby-block-highlight-toggle t)
