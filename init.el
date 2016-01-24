@@ -164,15 +164,6 @@ and source-file directory for your debugger.")
 ;; auto-complete
 (el-get-bundle auto-complete)
 
-;; rsense
-;;(setq rsense-home (expand-file-name "~/.emacs.d/from_git/rsense/"))
-;;;;(setq rsense-rurema-home "~/opt/rurema")
-;;(add-to-list 'load-path (concat rsense-home "/etc"))
-;;(require 'rsense)
-;;(define-key ruby-mode-map "\C-c\C-i" 'ac-complete-rsense)
-;;(define-key ruby-mode-map "\C-ct" 'rsense-type-help)
-;;(define-key ruby-mode-map "\C-cj" 'rsense-jump-to-definition)
-
 ;; C-c .で補完
 (add-hook 'ruby-mode-hook
           (lambda ()
@@ -194,8 +185,7 @@ and source-file directory for your debugger.")
 (el-get-bundle sass-mode)
 
 ;; Cucumber-mode
-(add-to-list 'load-path "~/.emacs.d/from_git/cucumber.el")
-(require 'feature-mode)
+(el-get-bundle feature-mode)
 
 ;; show trailing whitespace
 (when (boundp 'show-trailing-whitespace)
