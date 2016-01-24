@@ -2,11 +2,6 @@
 (when load-file-name
   (setq user-emacs-directory (file-name-directory load-file-name)))
 
-(add-to-list 'load-path (expand-file-name "~/.emacs.d/misc/jdee-2.4.0.1/lisp"))
-(add-to-list 'load-path (expand-file-name "~/.emacs.d/misc/cedet-1.1/common"))
-(load-file (expand-file-name "~/.emacs.d/misc/cedet-1.1/common/cedet.el"))
-(add-to-list 'load-path (expand-file-name "~/.emacs.d/misc/elib-1.0"))
-
 ;;;;;; el-get settings
 (when load-file-name
   (setq user-emacs-directory (file-name-directory load-file-name)))
@@ -19,20 +14,6 @@
 
 ;; el-getでダウンロードしたパッケージは ~/.emacs.d/ に入る
 ;;;;;; end of el-get settings
-
-;;jde
-(require 'jde)
-;; ecb does not support emacs24 yet???
-;; (add-to-list 'load-path (expand-file-name "~/.emacs.d/misc/ecb-2.40"))
-;;(load-file "~/.emacs.d/misc/ecb-2.40/ecb.el")
-;;(require 'ecb)
-;; android development in JDEE
-(custom-set-variables
- '(ansi-color-names-vector ["#242424" "#e5786d" "#95e454" "#cae682" "#8ac6f2" "#333366" "#ccaa8f" "#f6f3e8"])
-; '(anything-command-map-prefix-key "")
- '(custom-enabled-themes (quote (deeper-blue)))
- '(haskell-mode-hook (quote (turn-on-haskell-indentation)) t)
- '(jde-global-classpath (quote ("/System/Library/Frameworks/JavaVM.framework/Classes/classes.jar" "~/andriod-sdks/platforms/android-8/android.jar" "~/android-sdks/platforms/android-16/android.jar"))))
 
 ;; initial loading
 (setq load-path (cons "~/.emacs.d" load-path))
@@ -215,14 +196,6 @@ and source-file directory for your debugger.")
 (add-to-list 'load-path "~/.emacs.d/from_git/cucumber.el")
 (require 'feature-mode)
 
-
-;; helm
-;;(require 'helm-config)
-;;(helm-descbinds-mode)
-;;(require 'helm-migemo)
-;;(setq helm-use-migemo t)
-
-
 ;; show trailing whitespace
 (when (boundp 'show-trailing-whitespace)
   (setq-default show-trailing-whitespace t))
@@ -287,13 +260,15 @@ and source-file directory for your debugger.")
  ;; If there is more than one, they won't work right.
  )
 
-
+(el-get-bundle haml-mode)
 (add-hook 'haml-mode-hook
   (lambda()
     (setq indent-tabs-mode nil)))
 
+;; slim-mode
+(el-get-bundle slim-mode)
 
-(require 'web-mode)
+(el-get-bundle web-mode)
 (add-to-list 'auto-mode-alist '("\\.phtml$"     . web-mode))
 (add-to-list 'auto-mode-alist '("\\.tpl\\.php$" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.jsp$"       . web-mode))
@@ -312,23 +287,21 @@ and source-file directory for your debugger.")
 (add-hook 'web-mode-hook 'web-mode-hook)
 
 ;; helm
-;;; helm
-(require 'helm-config)
-(helm-descbinds-mode)
-;(helm-mode 1)
+(el-get-bundle helm)
+(el-get-bundle helm-ag)
+(el-get-bundle helm-descbinds)
+(el-get-bundle helm-gtags)
+(el-get-bundle helm-rails)
 
 (let ((key-and-func
-       `((,(kbd "C-r")   helm-for-files)
-         (,(kbd "C-^")   helm-c-apropos)
-         (,(kbd "C-;")   helm-resume)
-         (,(kbd "M-s")   helm-occur)
-         (,(kbd "M-x")   helm-M-x)
-         (,(kbd "M-y")   helm-show-kill-ring)
-         (,(kbd "M-z")   helm-do-grep)
-         (,(kbd "C-S-h") helm-descbinds)
-        )))
-  (loop for (key func) in key-and-func
-        do (global-set-key key func)))
-
-;; slim-mode
-(el-get-bundle slim-mode)
+      `((,(kbd "C-r")   helm-for-files)
+        (,(kbd "C-^")   helm-c-apropos)
+        (,(kbd "C-;")   helm-resume)
+        (,(kbd "M-s")   helm-occur)
+        (,(kbd "M-x")   helm-M-x)
+        (,(kbd "M-y")   helm-show-kill-ring)
+        (,(kbd "M-z")   helm-do-grep)
+        (,(kbd "C-S-h") helm-descbinds)
+       )))
+ (loop for (key func) in key-and-func
+       do (global-set-key key func)))
