@@ -11,7 +11,7 @@
 (add-to-list 'load-path (locate-user-emacs-file "el-get"))
 (require 'el-get)
 ;; el-getでダウンロードしたパッケージは ~/.emacs.d/ に入るようにする
-(setq el-get-dir (locate-user-emacs-file ""))
+(setq el-get-dir (locate-user-emacs-file "el-get-managed"))
 ;;;;;; end of el-get settings
 
 ;;jde

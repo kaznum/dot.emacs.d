@@ -1,0 +1,9 @@
+el-get/
+el-get-managed/
+misc/
+elpa/
+auto-install.el
+ac-comphist.dat
+auto-save-list/
+auto-install/
+abbrev_defs
