@@ -44,7 +44,7 @@
 (tool-bar-mode 0)
 
 ;; SVN mode
-(add-to-list 'load-path "~/.emacs.d/from_git/psvn")
+(el-get-bundle psvn)
 (require 'psvn)
 (autoload 'svn-status "psvn" nil t)
 (setq svn-status-hide-unmodified t)

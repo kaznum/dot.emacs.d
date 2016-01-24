@@ -22,9 +22,6 @@
 [submodule "from_git/yasnippets-rails"]
 	path = from_git/yasnippets-rails
 	url = https://github.com/eschulte/yasnippets-rails.git
-[submodule "from_git/psvn"]
-	path = from_git/psvn
-	url = https://github.com/emacsmirror/psvn.git
 [submodule "from_git/rspec-mode"]
 	path = from_git/rspec-mode
 	url = git://github.com/pezra/rspec-mode.git
