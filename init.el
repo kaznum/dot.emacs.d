@@ -45,7 +45,6 @@
 
 ;; SVN mode
 (el-get-bundle psvn)
-(require 'psvn)
 (autoload 'svn-status "psvn" nil t)
 (setq svn-status-hide-unmodified t)
 (setq process-coding-system-alist
