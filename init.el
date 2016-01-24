@@ -29,18 +29,8 @@
 
 ;; initial loading
 (setq load-path (cons "~/.emacs.d" load-path))
-(add-to-list 'load-path "~/.emacs.d/auto-install")
 (add-to-list 'load-path "~/.emacs.d/misc")
-(require 'auto-install)
-(setq auto-install-directory "~/.emacs.d/auto-install/")
-;;(auto-install-update-emacswiki-package-name t)
-(auto-install-compatibility-setup)
-;;; This was installed by package-install.el.
-;;; This provides support for the package system and
-;;; interfacing with ELPA, the package archive.
-;;; Move this code earlier if you want to reference
-;;; packages in your .emacs.
-;;(when
+
 (load
  (expand-file-name "~/.emacs.d/elpa/package.el"))
 (when (require 'package nil t)
