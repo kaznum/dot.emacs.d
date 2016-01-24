@@ -15,9 +15,6 @@
 ;; el-getでダウンロードしたパッケージは ~/.emacs.d/ に入る
 ;;;;;; end of el-get settings
 
-;; initial loading
-(add-to-list 'load-path "~/.emacs.d/misc")
-
 ;; Disable toolbar
 (tool-bar-mode 0)
 
@@ -202,7 +199,7 @@ and source-file directory for your debugger.")
              (setq indent-tabs-mode nil)))
 
 ;; slime
-(add-to-list 'load-path (expand-file-name "~/.emacs.d/misc/slime-2013-03-13"))
+(el-get-bundle slime)
 (when (require 'slime nil t)
   (setq inferior-lisp-program "clisp -K full")
   (setq slime-protocol-version 'ignore)
