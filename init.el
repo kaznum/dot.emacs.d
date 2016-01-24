@@ -75,7 +75,7 @@
 
 ;; rinari
 ;;; required inf-ruby
-(require 'rinari)
+(el-get-bundle rinari)
 
 ;; rspec-mode
 (add-to-list 'load-path "~/.emacs.d/from_git/mode-compile") ;; dependency
@@ -96,9 +96,10 @@
 (yas/load-directory "~/.emacs.d/from_git/yasnippet/snippets")
 (yas/load-directory "~/.emacs.d/from_git/yasnippets-rails/rails-snippets")
 
-(autoload 'run-ruby "inf-ruby" "Run an inferior Ruby process")
-(autoload 'inf-ruby-keys "inf-ruby" "Set local key defs for inf-ruby in ruby-mode")
-(add-hook 'ruby-mode-hook '(lambda () (inf-ruby-keys)))
+(autoload 'inf-ruby "inf-ruby" "Run an inferior Ruby process" t)
+(autoload 'inf-ruby-setup-keybindings "inf-ruby" "" t)
+(eval-after-load 'ruby-mode
+  '(add-hook 'ruby-mode-hook 'inf-ruby-setup-keybindings))
 
 ;; display line number
 (global-linum-mode t)
