@@ -1,8 +1,19 @@
-;;jde
+;; load-path で ~/.emacs.d とか書かなくてよくなる
+(when load-file-name
+  (setq user-emacs-directory (file-name-directory load-file-name)))
+
 (add-to-list 'load-path (expand-file-name "~/.emacs.d/misc/jdee-2.4.0.1/lisp"))
 (add-to-list 'load-path (expand-file-name "~/.emacs.d/misc/cedet-1.1/common"))
 (load-file (expand-file-name "~/.emacs.d/misc/cedet-1.1/common/cedet.el"))
 (add-to-list 'load-path (expand-file-name "~/.emacs.d/misc/elib-1.0"))
+
+;; el-get
+(add-to-list 'load-path (locate-user-emacs-file "el-get"))
+(require 'el-get)
+;; el-getでダウンロードしたパッケージは ~/.emacs.d/ に入るようにする
+(setq el-get-dir (locate-user-emacs-file ""))
+
+;;jde
 (require 'jde)
 ;; ecb does not support emacs24 yet???
 ;; (add-to-list 'load-path (expand-file-name "~/.emacs.d/misc/ecb-2.40"))
@@ -128,13 +139,17 @@
 (setq initial-scratch-message nil)
 
 ;; specify font setting
-(create-fontset-from-ascii-font "Menlo-10:weight=normal:slant=normal" nil "menlokakugo")
-(set-fontset-font "fontset-menlokakugo"
-                  'unicode
-                  (font-spec :family "Hiragino Kaku Gothic ProN" :size 12)
-                  nil
-                  'append)
-(add-to-list 'default-frame-alist '(font . "fontset-menlokakugo"))
+(if (display-graphic-p)
+    (progn
+     (create-fontset-from-ascii-font "Menlo-10:weight=normal:slant=normal"
+				     nil
+				     "menlokakugo")
+     (set-fontset-font "fontset-menlokakugo"
+		       'unicode
+		       (font-spec :family "Hiragino Kaku Gothic ProN" :size 12)
+		       nil
+		       'append)
+     (add-to-list 'default-frame-alist '(font . "fontset-menlokakugo"))))
 
 ;; yasnippet
 (setq yas/trigger-key 'TAB)
@@ -172,20 +187,16 @@ and source-file directory for your debugger.")
 (setq ruby-block-highlight-toggle t)
 
 ;; auto-complete
-(add-to-list 'load-path "~/.emacs.d/from_git/auto-complete")
-(require 'auto-complete)
-(add-to-list 'ac-dictionary-directories "~/.emacs.d/dict")
-(require 'auto-complete-config)
-(ac-config-default)
+(el-get-bundle auto-complete)
 
 ;; rsense
-(setq rsense-home (expand-file-name "~/.emacs.d/from_git/rsense/"))
-;;(setq rsense-rurema-home "~/opt/rurema")
-(add-to-list 'load-path (concat rsense-home "/etc"))
-(require 'rsense)
-(define-key ruby-mode-map "\C-c\C-i" 'ac-complete-rsense)
-(define-key ruby-mode-map "\C-ct" 'rsense-type-help)
-(define-key ruby-mode-map "\C-cj" 'rsense-jump-to-definition)
+;;(setq rsense-home (expand-file-name "~/.emacs.d/from_git/rsense/"))
+;;;;(setq rsense-rurema-home "~/opt/rurema")
+;;(add-to-list 'load-path (concat rsense-home "/etc"))
+;;(require 'rsense)
+;;(define-key ruby-mode-map "\C-c\C-i" 'ac-complete-rsense)
+;;(define-key ruby-mode-map "\C-ct" 'rsense-type-help)
+;;(define-key ruby-mode-map "\C-cj" 'rsense-jump-to-definition)
 
 ;; C-c .で補完
 (add-hook 'ruby-mode-hook
@@ -270,9 +281,13 @@ and source-file directory for your debugger.")
       (setq slime-lisp-implementations
             '((clisp ("clisp") :init slime-init-command)
               (mit-scheme ("mit-scheme") :init mit-scheme-start-swank))))
-  ;;(setq slime-default-lisp 'mit-scheme)
-  (setq slime-default-lisp 'clisp)
+  (setq slime-default-lisp 'mit-scheme)
+  ;;(setq slime-default-lisp 'clisp)
   (add-hook 'scheme-mode-hook 'mit-scheme-slime-mode-init))
+  (add-hook 'scheme-mode-hook 
+    (lambda()
+      (setq indent-tabs-mode nil)))
+
 
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
@@ -323,3 +338,7 @@ and source-file directory for your debugger.")
         )))
   (loop for (key func) in key-and-func
         do (global-set-key key func)))
+
+
+;; slim-mode
+(require 'slim-mode)
