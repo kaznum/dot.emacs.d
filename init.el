@@ -86,13 +86,11 @@
 (add-hook 'rhtml-mode-hook
           (lambda () (rinari-launch)))
 
-;; configuration of yasnippet/rails-snippets
-(add-to-list 'load-path
-	     "~/.emacs.d/from_git/yasnippet")
-(require 'yasnippet) ;; not yasnippet-bundle
-(yas/initialize)
-(yas/load-directory "~/.emacs.d/from_git/yasnippet/snippets")
-(yas/load-directory "~/.emacs.d/from_git/yasnippets-rails/rails-snippets")
+;; configuration of yasnippet
+(el-get-bundle yasnippet)
+(el-get-bundle yasnippet-snippets)
+(el-get-bundle yasnippets)
+(yas-global-mode 1)
 
 (autoload 'inf-ruby "inf-ruby" "Run an inferior Ruby process" t)
 (autoload 'inf-ruby-setup-keybindings "inf-ruby" "" t)
