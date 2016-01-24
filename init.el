@@ -19,14 +19,6 @@
 (setq load-path (cons "~/.emacs.d" load-path))
 (add-to-list 'load-path "~/.emacs.d/misc")
 
-(load
- (expand-file-name "~/.emacs.d/elpa/package.el"))
-(when (require 'package nil t)
-;  (add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/"))
-  (add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/"))
-  (add-to-list 'package-archives '("ELPA" . "http://tromey.com/elpa/"))
-  (package-initialize))
-
 ;; Disable toolbar
 (tool-bar-mode 0)
 
