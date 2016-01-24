@@ -16,3 +16,6 @@
 [submodule "from_git/haskell-mode"]
 	path = from_git/haskell-mode
 	url = https://github.com/haskell/haskell-mode.git
+[submodule "from_git/mit-scheme-swank"]
+	path = from_git/mit-scheme-swank
+	url = https://github.com/ecraven/mit-scheme-swank.git
