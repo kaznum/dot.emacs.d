@@ -13,15 +13,6 @@
 [submodule "from_git/rsense"]
 	path = from_git/rsense
 	url = https://github.com/m2ym/rsense.git
-[submodule "from_git/yasnippet"]
-	path = from_git/yasnippet
-	url = https://github.com/capitaomorte/yasnippet.git
-[submodule "from_git/yasnippets-rails"]
-	path = from_git/yasnippets-rails
-	url = https://github.com/eschulte/yasnippets-rails.git
-[submodule "from_git/mode-compile"]
-	path = from_git/mode-compile
-	url = https://github.com/emacsmirror/mode-compile.git
 [submodule "from_git/haskell-mode"]
 	path = from_git/haskell-mode
 	url = https://github.com/haskell/haskell-mode.git
