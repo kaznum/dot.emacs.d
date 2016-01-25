@@ -104,6 +104,7 @@
           '(lambda ()
              (setq tab-width 2)
              (setq indent-tabs-mode nil)
+             (setq ruby-insert-encoding-magic-comment nil)
              (setq ruby-indent-level tab-width)))
 
 ;; make scratch buffer empty
