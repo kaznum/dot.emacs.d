@@ -110,6 +110,18 @@
 ;; make scratch buffer empty
 (setq initial-scratch-message nil)
 
+;; Change modeline color of active frame
+(set-face-attribute 'mode-line
+                    nil
+                    :foreground "gray25"
+                    :background "gray80"
+                    :box '(:line-width 1 :style released-button))
+(set-face-attribute 'mode-line-inactive
+                    nil
+                    :foreground "gray80"
+                    :background "gray25"
+                    :box '(:line-width 1 :style released-button))
+
 ;; specify font setting
 (if (display-graphic-p)
     (progn
